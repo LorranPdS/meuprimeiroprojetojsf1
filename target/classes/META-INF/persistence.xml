@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="meuprimeiroprojetojsf">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.com.entidades.Pessoa</class>
+		<class>br.com.entidades.Lancamento</class>
+		<class>br.com.entidades.Estados</class>
+		<class>br.com.entidades.Cidades</class>
+	
+	<properties>
+	<property name="javax.persistence.jdbc.url" 
+	value="jdbc:postgresql://localhost:5432/meuprimeiroprojetojsf"/>
+	
+	<property name="javax.persistence.jdbc.user" value="postgres"/>
+	<property name="javax.persistence.jdbc.password" value="admin"/>
+	<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+	<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+	<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+	<property name="hibernate.show_sql" value="true"/>
+	<property name="hibernate.format_sql" value="true"/>
+	<property name="hibernate.hbm2ddl.auto" value="update"/>
+	
+	
+	<!-- Minimo de conexões ou portas disponíveis -->
+	<property name="hibernate.c3p0.min_size" value="5"/>
+	
+	<!-- Máximo de conexões ou portas que ficarão abertas -->
+	<property name="hibernate.c3p0.max_size" value="100"/>
+	
+	<!-- O número de segundos em que uma conexão inativa é mantida no pool -->
+	<property name="hibernate.c3p0.timeout" value="300"/>
+	
+	<!-- Número total de instruções (transações, operações no BD mantidas em cache)
+	Em cache por que? Às vezes temos um SQL de um relatório que está sendo muitas vezes:
+	ele deixa em cache para ficar mais fácil -->
+	<property name="hibernate.c3p0.max_statements" value="50"/>
+	
+	<!-- Tempo ocioso em segundos antes de uma conexão ser validada automaticamente -->
+	<property name="hibernate.c3p0.idle_test_period" value="120"/>
+	
+	
+	</properties>
+	</persistence-unit>
+		
+	
+</persistence>
+
+<!-- provider: esse é nosso provedor de persistência. Você aprende tudo isso lendo as
+documentações do framework -->
+<!-- class: serve para declaração da classe. Logo que declarada, você pode ver que o
+erro na classe Pessoa sumiu -->
+<!-- É no properties que iremos falar para o hibernate como será a conexão com o BD -->
+<!-- Deixa o hibernate criar as tabelas e atualizar -->
